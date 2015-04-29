@@ -6,11 +6,15 @@ class SchoolistService
   end
 
   def schools
-    JSON.parse(connection.get("schools").body, symbolize_names: true)
+    parse(connection.get("schools"))
   end
 
   def school(id)
-    JSON.parse(connection.get("schools/#{id}").body, symbolize_names: true)
+    parse(connection.get("schools/#{id}"))
+  end
+
+  def parse(response)
+    JSON.parse(response.body, symbolize_names: true)
   end
 
 end
