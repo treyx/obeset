@@ -13,8 +13,8 @@ class SchoolsController < ApplicationController
   end
 
   def create
-    @school = School.create(params)
+    school = School.create(params)
 
-    redirect_to school_path(@school.id)
+    redirect_to school_path(school.id)
   end
 end
