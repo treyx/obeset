@@ -25,4 +25,8 @@ class SchoolistService
     JSON.parse(response.body, symbolize_names: true)
   end
 
+  def create_school(params)
+    parse(connection.post("schools", params))
+  end
+
 end
