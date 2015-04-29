@@ -15,4 +15,12 @@ class School < OpenStruct
   def self.create(params)
     new(service.create_school(params))
   end
+
+  def self.update(id, params)
+    service.update_school(id, params)
+  end
+
+  def self.destroy
+    service.destroy_school(id)
+  end
 end
