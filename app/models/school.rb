@@ -11,4 +11,8 @@ class School < OpenStruct
   def self.find(id)
     new(service.school(id))
   end
+
+  def self.create(params)
+    new(service.create_school(params))
+  end
 end
