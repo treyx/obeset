@@ -5,5 +5,6 @@
     <li> UID: <%= school.uid %> </li>
     <li> Obese Percentage: <%= school.obese_percentage %> </li>
     <li> Overweight Percentage: <%= school.overweight_percentage %> </li>
+    <%= link_to "destroy", school_path(school.id), method: :delete %>
   </ul>
 <% end %>
