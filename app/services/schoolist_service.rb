@@ -29,4 +29,11 @@ class SchoolistService
     parse(connection.post("schools", params))
   end
 
+  def update_school(id, params)
+    connection.put("schools/#{id}", params)
+  end
+
+  def destroy_school(id)
+    connection.delete("schools/#{id}")
+  end
 end
