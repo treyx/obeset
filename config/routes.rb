@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :schools
-  resources :counties
+  resources :schools, only: [:index, :show]
+  resources :counties, only: [:index, :show]
 end
