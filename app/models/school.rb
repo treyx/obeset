@@ -5,20 +5,14 @@ class School
   end
 
   def self.all
-    new(service.schools)
+    _build_school(service.schools)
   end
 
   def self.find(id)
-    new(service.school(id))
+    _build_school(service.school(id))
   end
 
-  attr_reader :uid, :id, :overweight_percentage, :obese_percentage
-
-  def initialize(data)
-    @uid                   = data[:uid]
-    @id                    = data[:id]
-    @overweight_percentage = data[:overweight_percentage]
-    @obese_percentage      = data[:obese_percentage]
+  def self._build_school(data)
+    OpenStruct.new(data)
   end
-
 end
