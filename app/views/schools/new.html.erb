@@ -1,4 +1,4 @@
-<%= form_tag("/schools/#{@school.id}", method: :post) %>
+<%= form_tag("/schools", method: :post) do %>
 
   <%= label_tag "uid" %>
   <%= text_field_tag "school[uid]" %>
