@@ -1,0 +1,9 @@
+<h1> Schools: </h1>
+<% @schools.each do |school| %>
+  <ul>
+    <li> ID: <%= school.id %> </li>
+    <li> UID: <%= school.uid %> </li>
+    <li> Obese Percentage: <%= school.obese_percentage %> </li>
+    <li> Overweight Percentage: <%= school.overweight_percentage %> </li>
+  </ul>
+<% end %>
