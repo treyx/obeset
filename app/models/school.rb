@@ -5,7 +5,7 @@ class School < OpenStruct
   end
 
   def self.all
-    new(service.schools)
+    service.schools.map { |school| new(school) }
   end
 
   def self.find(id)
