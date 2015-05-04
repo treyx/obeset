@@ -21,7 +21,21 @@ RSpec.describe SchoolistService, type: :service do
       expect(school[:obese_percentage]).to eq("25.4")
       expect(school[:county_id]).to eq(1)
     end
+  end
 
+  it "creates a school" do
+    expect do
+      VCR.use_cassette("schoolist_service_school") do
+        school_params = { school: {uid: "1", overweight_percentage: "1", obese_percentage: "1" }}
+        school = SchoolistService.new.create_school(school_params)
+        expect(school[:uid]).to eq("1")
+        expect(school[:overweight_percentage]).to eq("1.0")
+        expect(school[:obese_percentage]).to eq("1.0")
+
+      end.to change{ SchoolistService.new.schools.count }.from(0).to(1)
+
+        SchoolistService.new.destroy_school(school[:id])
+    end
   end
 
 end
