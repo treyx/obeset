@@ -25,7 +25,7 @@ RSpec.describe SchoolistService, type: :service do
 
   it "creates a school" do
     expect do
-      VCR.use_cassette("schoolist_service_school") do
+      VCR.use_cassette("schoolist_service_create_school") do
         school_params = { school: {uid: "1", overweight_percentage: "1", obese_percentage: "1" }}
         school = SchoolistService.new.create_school(school_params)
         expect(school[:uid]).to eq("1")
@@ -36,6 +36,21 @@ RSpec.describe SchoolistService, type: :service do
 
         SchoolistService.new.destroy_school(school[:id])
     end
+  end
+
+  it "updates a school" do
+    VCR.use_cassette("schoolist_service_update_school") do
+      original_params = { school: {uid: "1", overweight_percentage: "1", obese_percentage: "1" }}
+      original_school = SchoolistService.new.create_school(original_params)
+
+      updated_params = { school: {uid: "2", overweight_percentage: "2", obese_percentage: "2" }}
+      SchoolistService.new.update_school(original_school[:id], updated_params)
+      updated_school = SchoolistService.new.school(original_school["id"])
+      expect(original_school).to_not eq(updated_school)
+
+      SchoolistService.new.destroy_school(original_school[:id])
+    end
+
   end
 
 end
